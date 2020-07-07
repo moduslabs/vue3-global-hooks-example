@@ -1,19 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <div v-if="error">Parent: {{ error }}</div>
+    <Suspense>
+      <template #default>
+        <Users />
+      </template>
+      <template #fallback>
+        <div>Loading your amazing vuesers...</div>
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Users from "./components/Users.vue";
+import { ref, onErrorCaptured } from "vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  setup() {
+    const error = ref(null);
+
+    onErrorCaptured(e => {
+      error.value = e;
+    });
+
+    return { error };
+  },
   components: {
-    HelloWorld
+    Users
   }
-}
+};
 </script>
 
 <style>
