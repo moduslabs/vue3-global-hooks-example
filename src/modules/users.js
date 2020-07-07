@@ -1,13 +1,13 @@
 import { reactive, toRefs } from "vue";
 
-export default function useUsers() {
-  const state = reactive({
-    error: null,
-    users: null,
-    loaded: false,
-    loading: false,
-  });
+const state = reactive({
+  error: null,
+  users: null,
+  loaded: false,
+  loading: false,
+});
 
+export default function useUsers() {
   const load = async () => {
     if (!state.loaded) {
       try {

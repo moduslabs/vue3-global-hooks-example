@@ -10,11 +10,13 @@
         <div>Loading your amazing vuesers...</div>
       </template>
     </Suspense>
+    <SecondaryUsage />
   </div>
 </template>
 
 <script>
 import Users from "./components/Users.vue";
+import SecondaryUsage from "./components/SecondaryUsage.vue";
 import { ref, onErrorCaptured } from "vue";
 
 export default {
@@ -29,7 +31,8 @@ export default {
     return { error };
   },
   components: {
-    Users
+    Users,
+    SecondaryUsage
   }
 };
 </script>
